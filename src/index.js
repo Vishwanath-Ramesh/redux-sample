@@ -1,13 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import React from "react";
+import ReactDOM from "react-dom";
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import createSagaMiddleware from "redux-saga";
 
-import App from './App';
-import Store from './store/Store';
+import saga from "./store/sagas";
+import rootReducer from "./store/reducers";
+import App from "./App";
+
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
 
 ReactDOM.render(
-  <Provider store={Store}>
+  <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
+
+sagaMiddleware.run(saga);
