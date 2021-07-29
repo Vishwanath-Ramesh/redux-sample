@@ -1,0 +1,6 @@
+.counter {
+  display: flex;
+  flex: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
