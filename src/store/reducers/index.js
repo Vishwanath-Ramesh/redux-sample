@@ -1,7 +1,6 @@
-const initialState = {
+import { combineReducers } from "redux";
 
-}
+import counter from "./counter";
+import todoLists from "./todoLists";
 
-export default function rootReducer(state = initialState, action) {
-   return state
-}
+export default combineReducers({ counter, todoLists });

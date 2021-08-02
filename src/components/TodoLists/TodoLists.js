@@ -1,9 +1,12 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 
+import todoListsActions from "../../store/actionCreators/todoLists";
 import Todos from "../Todos/Todos";
 
 function TodoLists() {
   const [todo, setTodo] = React.useState("");
+  const dispatch = useDispatch();
 
   return (
     <div className="todo-lists">
@@ -14,7 +17,12 @@ function TodoLists() {
           value={todo}
           onChange={({ target }) => setTodo(target.value)}
         />
-        <button type="submit">Add Todo</button>
+        <button
+          type="submit"
+          onClick={() => dispatch(todoListsActions.addTodo(todo))}
+        >
+          Add Todo
+        </button>
       </div>
       <Todos />
     </div>
